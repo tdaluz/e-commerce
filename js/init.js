@@ -40,3 +40,11 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+document.addEventListener("DOMContentLoaded", function(e){
+  document.getElementById("showEmail").innerHTML= localStorage.getItem("user");
+})
+
+function signOut(){
+  localStorage.clear();
+}

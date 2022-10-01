@@ -64,7 +64,6 @@ function sortProducts(criteria, array){
 }
 
 document.addEventListener("DOMContentLoaded", e => {
-    document.getElementById("showEmail").innerHTML= localStorage.getItem("user");
     productsURL = PRODUCTS + localStorage.getItem("catID") + EXT_TYPE;
     getJSONData(productsURL).then(function(resultObj){
         if (resultObj.status === "ok"){

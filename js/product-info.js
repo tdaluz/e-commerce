@@ -5,9 +5,7 @@ let btnSend = document.getElementById("btnSend");
 let commentArea = document.getElementById("commentArea");
 let scoreComment = document.getElementById("scoreComment");
 
-
 document.addEventListener("DOMContentLoaded", e => {
-    document.getElementById("showEmail").innerHTML = localStorage.getItem("user");
     ProductInfoFunction();
     addCommentsFunction();
     CommentFunction();
@@ -19,7 +17,7 @@ function ProductInfoFunction() {
         if (resultObj.status === "ok") {
             prodcutInfoArray = resultObj.data;
             showProductInfo();
-
+            showRelatedProducts();
         }
     });
 }
@@ -30,7 +28,8 @@ function CommentFunction() {
             prodcutCommentArray = resultObj.data;
             showComment();
 
-        }});
+        }
+    });
 }
 function showProductInfo() {
     let htmlContentToAppend = "";
@@ -49,16 +48,33 @@ function showProductInfo() {
         <p>${prodcutInfoArray.soldCount} </p>
         </div>
         <h6><b>Imágenes ilustrativas</b></h6>
-        <div class="row">
-        <div class="col-50">
+        <div class="col">
         `
-    for (let i = 0; i < prodcutInfoArray.images.length; i++) {
+        for (let i = 0; i < prodcutInfoArray.images.length; i++) {
         let productImagesData = prodcutInfoArray.images[i];
         htmlContentToAppend += `
         <img src="` + productImagesData + `" alt="product images" class="img-thumbnail" width="400" height="400">
     `}
     `</div>
     </div>
+
+    <h6><b>Imágenes ilustrativas Carrusel</b></h6>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+    <div class="carousel-item active">
+    <img src="${prodcutInfoArray.images[0]}" class="d-block w-100" alt="...">
+    </div>`
+    for (let i = 1; i < prodcutInfoArray.images.length; i++) {
+        let productImagesData = prodcutInfoArray.images[i];
+        htmlContentToAppend += `
+        <div class="carousel-item">
+        <img src="${productImagesData}" class="d-block w-100" alt="...">
+        </div>
+
+    `}
+    `</div>
+    </div>
+    
     `
     document.getElementById("product-data-container").innerHTML = htmlContentToAppend;
 }
@@ -71,24 +87,24 @@ function showComment() {
     <div class="mb-1">
     `
     for (let i = 0; i < prodcutCommentArray.length; i++) {
-        let productData = prodcutCommentArray[i];
-        htmlContentToAppend += `
-        <p><b>${productData.user}</b> ${productData.description}<p>
-        <p>${productData.dateTime} `
-        for (let x = 0; x < productData.score ; x++) {
-        htmlContentToAppend += `<span class="fa fa-star score"></span>`
-        }       
-        for (let x = 0; x < (5 - productData.score); x++) {
-        htmlContentToAppend += `<span class="fa fa-star "></span>`
-        } 
-        }
-        `</p>
+          let productData = prodcutCommentArray[i];
+          htmlContentToAppend += `
+          <p><b>${productData.user}</b> ${productData.description}</p>
+          <p>${productData.dateTime} `
+          for (let x = 0; x < productData.score ; x++) {
+          htmlContentToAppend += `<span class="fa fa-star score"></span>`
+          }       
+          for (let x = 0; x < (5 - productData.score); x++) {
+          htmlContentToAppend += `<span class="fa fa-star "></span>`
+          } 
+        } `      
+        </p>
         </div>
         </div>
         </div>
         `
-        document.getElementById("product-comment-container").innerHTML += htmlContentToAppend; 
-     }  
+    document.getElementById("product-comment-container").innerHTML += htmlContentToAppend;
+}
 function cleanForm() {
     // Función para limpiar el formulario y dejar el arreglo vacío para volver a comentar. 
     commentArea.value = "";
@@ -109,12 +125,12 @@ function addCommentsFunction() {
         htmlContentToAppend += `
                     <p><b>${userValue}</b> ${commentValue}<p>
                     <p>${dateValue} `
-                    for (let x = 0; x < scoreValue ; x++) {
-                    htmlContentToAppend += `<span class="fa fa-star score"></span>`
-                    }       
-                    for (let x = 0; x < (5 - scoreValue); x++) {
-                    htmlContentToAppend += `<span class="fa fa-star "></span>`
-                    } `
+        for (let x = 0; x < scoreValue; x++) {
+            htmlContentToAppend += `<span class="fa fa-star score"></span>`
+        }
+        for (let x = 0; x < (5 - scoreValue); x++) {
+            htmlContentToAppend += `<span class="fa fa-star "></span>`
+        } `
                     </p>
             </div>
         </div>
@@ -123,4 +139,37 @@ function addCommentsFunction() {
         cleanForm();
     })
 }
-
+function showRelatedProducts() {
+    let productsRelated = prodcutInfoArray.relatedProducts;
+    let htmlContentToAppend = "";
+    htmlContentToAppend += `
+        <margin
+        <div class="container">
+        <h4>Productos Relacionados:</h4>
+        <div class="row">
+        <div class="col-md-5">
+        <table>
+        `
+    for (let i = 0; i < productsRelated.length; i++) {
+        let productImagesData = productsRelated[i];
+        htmlContentToAppend += `
+            <td>
+            <div class="card mb-4 shadow-sm custom-card cursor-active" onclick="setRelatedID(${productImagesData.id})">
+            <div class="img-thumbnail">
+            <img src="${productImagesData.image}" height="150px">
+            <figcaption class="figure-caption">${productImagesData.name}</figcaption>
+            </div>
+            </div>
+            </td>
+        `}
+    `
+        </table>
+        </div>
+        </div>
+        `
+    document.getElementById("related-products-container").innerHTML = htmlContentToAppend;
+}
+function setRelatedID(id) {
+    localStorage.setItem("productID", id);
+    window.location = "product-info.html"
+}
