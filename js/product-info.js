@@ -17,6 +17,7 @@ function ProductInfoFunction() {
         if (resultObj.status === "ok") {
             prodcutInfoArray = resultObj.data;
             showProductInfo();
+            imagesIlustrative();
             showRelatedProducts();
         }
     });
@@ -27,7 +28,6 @@ function CommentFunction() {
         if (resultObj.status === "ok") {
             prodcutCommentArray = resultObj.data;
             showComment();
-
         }
     });
 }
@@ -47,37 +47,37 @@ function showProductInfo() {
         <h6><b>Cantidad de vendidos</b></h6>
         <p>${prodcutInfoArray.soldCount} </p>
         </div>
-        <h6><b>Imágenes ilustrativas</b></h6>
-        <div class="col">
-        `
-        for (let i = 0; i < prodcutInfoArray.images.length; i++) {
-        let productImagesData = prodcutInfoArray.images[i];
-        htmlContentToAppend += `
-        <img src="` + productImagesData + `" alt="product images" class="img-thumbnail" width="400" height="400">
-    `}
-    `</div>
-    </div>
-
-    <h6><b>Imágenes ilustrativas Carrusel</b></h6>
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-    <div class="carousel-item active">
-    <img src="${prodcutInfoArray.images[0]}" class="d-block w-100" alt="...">
-    </div>`
-    for (let i = 1; i < prodcutInfoArray.images.length; i++) {
-        let productImagesData = prodcutInfoArray.images[i];
-        htmlContentToAppend += `
-        <div class="carousel-item">
-        <img src="${productImagesData}" class="d-block w-100" alt="...">
-        </div>
-
-    `}
-    `</div>
-    </div>
-    
     `
     document.getElementById("product-data-container").innerHTML = htmlContentToAppend;
 }
+function imagesIlustrative(){
+    let htmlContentToAppend = "";
+    htmlContentToAppend += `
+    <h6><b>Imágenes ilustrativas</b></h6>
+    <div class="carousel-item active" >
+    <img src="${prodcutInfoArray.images[0]}" class="d-block w-100" >
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>`
+    for (let i = 1; i < prodcutInfoArray.images.length; i++) {
+    let productImagesData = prodcutInfoArray.images[i];
+    htmlContentToAppend += `
+    <div class="carousel-item">
+    <img src="${productImagesData}" class="d-block w-100">
+    </div>
+
+`}
+document.getElementById("carouselImages").innerHTML += htmlContentToAppend;
+}
+
 function showComment() {
     let htmlContentToAppend = "";
     htmlContentToAppend += `
@@ -123,8 +123,8 @@ function addCommentsFunction() {
         [userValue, commentValue, scoreValue, dateValue] = commentArray;
         let htmlContentToAppend = ""
         htmlContentToAppend += `
-                    <p><b>${userValue}</b> ${commentValue}<p>
-                    <p>${dateValue} `
+            <p><b>${userValue}</b> ${commentValue}<p>
+            <p>${dateValue} `
         for (let x = 0; x < scoreValue; x++) {
             htmlContentToAppend += `<span class="fa fa-star score"></span>`
         }

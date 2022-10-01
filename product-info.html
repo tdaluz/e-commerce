@@ -13,9 +13,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     .score {
-      color: orange; 
+      color: orange;
     }
-    .notScore{
+
+    .notScore {
       color: black;
     }
   </style>
@@ -68,27 +69,32 @@
   <main>
     <div class="container" id="product-data-container">
     </div>
+    <div class="container" id="ilustrativeImages">
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" id="carouselImages">
+        </div>
+      </div>
+    </div>
+    <br>
     <div class="container" id="product-comment-container">
     </div>
+    <br>
     <div class="container" id="add-comment-container">
-      <br>
-    <h4>Comentar</h4>
+      <h4>Comentar</h4>
     <form>
-        <p>Tu opinion:</p>
-        <textarea type="text" class="form-control" id="commentArea" rows="3"></textarea>
-        <br>
-        <p>Puntuación:</p>
-        <select id="scoreComment">
+      <p>Tu opinion:</p>
+      <textarea type="text" class="form-control" id="commentArea" rows="3"></textarea>
+      <br>
+      <p>Puntuación:</p>
+      <select id="scoreComment">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
         <option value="5">5</option>
-    </select>
-    <br>
-    <br>
+      </select>
+    </form>
     <button type="button" class="btn btn-primary my-3" id="btnSend">Enviar</button>
-    </div>
     <div class="container" id="related-products-container">
     </div>
   </main>
