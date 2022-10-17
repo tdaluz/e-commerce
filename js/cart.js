@@ -90,7 +90,7 @@ function adressSend(){
     <input type="text" class="form-control" aria-label="Number adress">
   </div>
 <div class="col-6">
-<label for="email">Esquina</label>
+<label for="corner">Esquina</label>
   <input type="text" class="form-control" aria-label="Corner adress">
 </div>
 </div>
