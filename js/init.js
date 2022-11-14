@@ -46,5 +46,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 })
 
 function signOut(){
-  localStorage.clear();
+  localStorage.removeItem("user");
+  localStorage.removeItem("addCArt");
+  localStorage.removeItem("arrayShippin");
 }

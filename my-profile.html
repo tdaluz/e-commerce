@@ -72,9 +72,74 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+      <form action="#" method="get" class="row mt-4">
+        <div class="col" style="margin: 25px">
+          <div class="row g-3" style="margin-bottom: -20px">
+            <div class="col-sm-6">
+              <h1 class="mb-3">Perfil</h1>
+              <h5 class="mb-3" id="idProfile"></h5>
+            </div>
+           
+          </div>
+          <hr class="my-4">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="name" class="form-label">Nombre<b>*</b></label>
+              <input type="text" class="form-control" id="userName" required>
+              <div class="invalid-feedback">
+                Por favor, ingrese su nombre.
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label for="secondName" class="form-label">Segundo nombre</label>
+              <input type="text" class="form-control" id="userSecondName">
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastname" class="form-label">Apellido<b>*</b></label>
+              <input type="text" class="form-control" id="userLastname">
+              <div class="invalid-feedback">
+                Por favor, ingrese su apellido.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="secondLastname" class="form-label">Segundo apellido</label>
+              <input type="text" class="form-control" id="userSecondLastname">
+            </div>
+
+            <div class="col-sm-6">
+              <label for="email" class="form-label">Email<b>*</b></label>
+              <input type="email" class="form-control" id="userEmail">
+              <div class="invalid-feedback">
+                Por favor, ingrese su e-mail.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="number" class="form-label">Teléfono de contacto</label>
+              <input type="phone" class="form-control" id="userPhoneNumber">
+            </div>
+           
+            <div>
+              <br>
+              <hr>
+              <button class="btn btn-primary btn-lg btn-block" type="button" id="btnSaveProfile">Guardar
+                cambios</button>
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+          <p>Se ha registrado correctamente</p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="alert alert-danger alert-dismissible fade" role="alert" id="alert-danger">
+          <p>Por favor, revise los campos obligatorios.</p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+      </form>
+    </div>
     </div>
   </main>
   <footer class="text-muted">

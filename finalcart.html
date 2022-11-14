@@ -5,19 +5,23 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    .score {
-      color: orange;
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
-    .notScore {
-      color: black;
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
     }
   </style>
 </head>
@@ -67,38 +71,64 @@
     </div>
   </nav>
   <main>
-    <div class="container" id="product-data-container">
-      <button type="button" class="btn btn-success pull-right" id="buttonAdd" style="margin-top: 25px;"
-        onclick="addCart()">Comprar</button>
-    </div>
-    <div class="container" id="ilustrativeImages">
-      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner" id="carouselImages">
+    <div class="container">
+      <div class="container" id="tableContainer">
+        <div class="container" id="product-data-container">
+          <br>
+          <h2>Compra realizada</h2>
+          <h5>Artículos a comprar</h5>
+          <hr>
+          <table class="table" id="tableCart">
+            <thead>
+              <tr>
+                <th class="text-center"></th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Costo</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Subtotal</th>
+                <th class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody id="tableBodyShippin">
+            </tbody>
+          </table>
+        </div>
+        <br>
+        <div class="container" id="formSend">
+          <h5>Tipo de envío</h5>
+          <h6><span id="typeSendShipping"></h6></span>
         </div>
       </div>
-    </div>
-    <br>
-    <div class="container" id="product-comment-container">
-    </div>
-    <br>
-    <div class="container" id="add-comment-container">
-      <h4>Comentar</h4>
-      <form>
-        <p>Tu opinion:</p>
-        <textarea type="text" class="form-control" id="commentArea" rows="3"></textarea>
-        <br>
-        <p>Puntuación:</p>
-        <select id="scoreComment">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </form>
-      <button type="button" class="btn btn-primary my-3" id="btnSend">Enviar</button>
-      <div class="container" id="related-products-container">
+      <br>
+      <hr>
+      <br>
+      <div class="container" id="adressSend">
+        <div class="row">
+          <div class="col-6">
+            <label for="street" class="form-label">Calle</label>
+            <div type="text" class="form-control" aria-label="Street name" id="adressStreetShipping"></div>
+          </div>
+          <br>
+          <div class="col">
+            <label for="number" class="form-label">Número</label>
+            <div type="number" class="form-control" aria-label="Number adress" id="adressNumberShipping"></div>
+          </div>
+          <br>
+
+          <div class="col-6">
+            <label for="corner" class="form-label">Esquina</label>
+            <div type="text" class="form-control" aria-label="Corner adress" id="adressCornerShipping"></div>
+          </div>
+        </div>
       </div>
+      <br>
+      <br>
+      <div style="text-align: right">
+        <button class="btn btn-primary btn-sm btn-block" type="button" id="btnSharp" onclick="checkout()">Imprimir compra</button>
+        <button class="btn btn-secondary btn-sm btn-block" type="button" id="btnInit" onclick="checkout()">Regresar
+          a Inicio</button>
+      </div>
+    </div>
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -110,19 +140,9 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script>
-
-
+  <script src="js/finalcart.js"></script>
 </body>
 
 </html>
